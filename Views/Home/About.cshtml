@@ -1,0 +1,53 @@
+﻿@model AboutVM
+@{
+
+}
+
+
+<h1>Post</h1>
+
+@foreach (Post item in Model.Posts)
+{
+    <p>
+        @item.Id - @item.Body - @item.Category.Title
+        -- <a asp-action="Edit" asp-controller="Home" asp-route-Id="@item.Id">Edit</a>
+        -- <a asp-action="Delete" asp-controller="Home" asp-route-Id="@item.Id">Delete</a>
+    </p>
+}
+
+
+
+<form method="post" asp-controller="Home" asp-action="AddPost">
+    <input type="text" asp-for="@Model.post.Title" />
+    <input type="text" asp-for="@Model.post.Body" />
+    <select asp-for="@Model.post.CategoryId">
+        @foreach (Category item in Model.categories)
+        {
+            <option value="@item.Id">
+                @item.Id - @item.Title
+            </option>
+        }
+    </select>
+    <input type="submit" />
+</form>
+
+
+<h1>Category</h1>
+
+@foreach (Category item in Model.categories)
+{
+    <p>
+        @item.Id - @item.Title
+        @foreach(Post itemP in item.Posts)
+                {
+                  <br />  @itemP.Title <br />
+                }
+    </p>
+}
+
+<form method="post" asp-controller="Home" asp-action="AddCategory">
+    <input type="text" asp-for="@Model.Category.Title" />
+    <input type="submit" />
+</form>
+
+

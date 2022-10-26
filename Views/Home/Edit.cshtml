@@ -1,0 +1,16 @@
+﻿@model AboutVM
+@{
+
+}
+
+
+
+<form method="post" asp-controller="Home" asp-action="Edit" asp-route-Id="@Model.post.Id">
+    
+    <input type ="text"  asp-for="@Model.post.Title"/>
+    <input type="text" asp-for="@Model.post.Body" />
+    <input type="submit" />
+</form>
+
+
+
